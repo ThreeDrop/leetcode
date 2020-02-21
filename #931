@@ -1,0 +1,16 @@
+class Solution:
+    def minFallingPathSum(self, A: List[List[int]]) -> int:
+        N=len(A)
+        aa=[*range(N-1)]
+        aa.reverse()
+        for r in aa:
+            for c in range(N):
+                best=A[r+1][c]
+                if c>0:
+                    best=min(best,A[r+1][c-1])
+                if c+1<N:
+                    best=min(best,A[r+1][c+1])
+                A[r][c]+=best
+        ans=9999
+        ans=min(ans,min(A[0]))
+        return ans
