@@ -1,0 +1,14 @@
+class Solution:
+    def minSteps(self, n: int) -> int:
+        if n==1:
+            return 0
+        res=n
+        aa=[*range(int(n))]
+        aa.reverse()
+        aa=aa[:-2]
+        
+        for i in aa:
+            if (n % i==0):
+                res=min(res,self.minSteps(n/i)+i)
+        return int(res)
+        
